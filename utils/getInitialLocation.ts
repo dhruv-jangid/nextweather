@@ -3,7 +3,7 @@ export const getInitialLocation = (): [number, number] => {
     return [51.505, -0.09];
   }
 
-  const storedLocation = localStorage.getItem("aerocast");
+  const storedLocation = localStorage.getItem("horizoniq");
   if (storedLocation) {
     try {
       const parsed = JSON.parse(storedLocation);

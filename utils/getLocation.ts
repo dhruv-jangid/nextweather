@@ -8,7 +8,7 @@ export const getLocation = (): Promise<{
         (position) => {
           const { latitude: lat, longitude: lng } = position.coords;
           const locationData = { lat, lng };
-          localStorage.setItem("aerocast", JSON.stringify(locationData));
+          localStorage.setItem("horizoniq", JSON.stringify(locationData));
           resolve(locationData);
         },
         (err) => {

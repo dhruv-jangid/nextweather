@@ -6,7 +6,7 @@ import { LocationProvider } from "@/lib/locationContext";
 const font = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AeroCast",
+  title: "HorizonIQ",
   description: "Know whats near, forecasts clear",
 };
 
