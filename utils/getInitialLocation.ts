@@ -5,12 +5,8 @@ export const getInitialLocation = (): [number, number] => {
 
   const storedLocation = localStorage.getItem("horizoniq");
   if (storedLocation) {
-    try {
-      const parsed = JSON.parse(storedLocation);
-      return [parsed.lat, parsed.lng];
-    } catch (e) {
-      console.error("Failed to parse location from localStorage:", e);
-    }
+    const { latitude, longitude } = JSON.parse(storedLocation);
+    return [latitude, longitude];
   }
   return [51.505, -0.09];
 };

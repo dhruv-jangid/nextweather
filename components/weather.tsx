@@ -1,7 +1,7 @@
 "use client";
 
 import { Chart } from "@/components/chart";
-import { WeatherResponse } from "@/lib/useWeather";
+import type { WeatherResponse } from "@/lib/useWeather";
 import {
   Droplets,
   Eye,

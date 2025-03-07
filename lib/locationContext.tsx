@@ -3,16 +3,19 @@
 import { createContext, useContext, useState } from "react";
 import { getInitialLocation } from "@/utils/getInitialLocation";
 
-type LocationContextType = {
-  location: [number, number];
-  setLocation: (location: [number, number]) => void;
-};
+const LocationContext = createContext<
+  | {
+      location: [number, number];
+      setLocation: (location: [number, number]) => void;
+    }
+  | undefined
+>(undefined);
 
-const LocationContext = createContext<LocationContextType | undefined>(
-  undefined
-);
-
-export function LocationProvider({ children }: { children: React.ReactNode }) {
+export const LocationProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [location, setLocation] = useState(() => getInitialLocation());
 
   return (
@@ -20,12 +23,12 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
       {children}
     </LocationContext.Provider>
   );
-}
+};
 
-export function useLocation() {
+export const useLocation = () => {
   const context = useContext(LocationContext);
   if (context === undefined) {
     throw new Error("useLocation must be used within a LocationProvider");
   }
   return context;
-}
+};

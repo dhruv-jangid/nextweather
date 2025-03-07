@@ -114,15 +114,15 @@ export const useWeather = (location: number[]) => {
         isInitialFetchDone.current = true;
       }
 
-      const [lat, lon] = location;
+      const [latitude, longitude] = location;
       const weather = await fetch("/api/getWeather", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          latitude: lat,
-          longitude: lon,
+          latitude,
+          longitude,
         }),
       });
 

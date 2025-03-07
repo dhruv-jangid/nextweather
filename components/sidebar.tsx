@@ -2,7 +2,7 @@ import { Sunrise, Navigation, Sunset, Locate } from "lucide-react";
 import { Search } from "@/components/search";
 import Image from "next/image";
 import Building from "@/public/images/building.png";
-import { iconMap, WeatherIconCode } from "@/components/icon";
+import { iconMap, WeatherIconCode } from "@/components/icons";
 import { getLocation } from "@/utils/getLocation";
 import { useLocation } from "@/lib/locationContext";
 import { WeatherResponse } from "@/lib/useWeather";
@@ -19,7 +19,7 @@ export const Sidebar = ({
   }
 
   return (
-    <div className="col-span-3 flex flex-col gap-16 xl:gap-20 p-10 lg:p-12 w-full relative lg:overflow-hidden">
+    <div className="col-span-3 flex flex-col gap-16 xl:gap-20 p-8 lg:p-12 w-full relative lg:overflow-hidden">
       <div className="flex flex-col gap-8 line">
         <div className="flex justify-between items-center">
           <Locate
@@ -27,9 +27,9 @@ export const Sidebar = ({
             className="p-1.5 bg-[#e4f0fe] rounded-2xl cursor-pointer"
             color="#5c9de6"
             onClick={async () => {
-              const result = await getLocation();
-              if (result) {
-                setLocation([result.lat, result.lng]);
+              const location = await getLocation();
+              if (location) {
+                setLocation([location.latitude, location.longitude]);
               }
             }}
           />

@@ -1,30 +1,49 @@
-import moment from "moment";
+import { capFirstLetters } from "@/utils/capFirstLetters";
 
 export async function POST(req: Request) {
   const body = await req.json();
   const { latitude, longitude } = body;
+  if (!latitude || !longitude) {
+    throw new Error("Latitude & Longitude are required!");
+  }
 
   try {
-    const curr_result = await fetch(
+    const currentResult = await fetch(
       `${process.env.API_URL}weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY}`
     );
-    const currentWeather = await curr_result.json();
+    const currentWeather = await currentResult.json();
 
     currentWeather.weather[0].description = capFirstLetters(
       currentWeather.weather[0].description
     );
     currentWeather.visibility = currentWeather.visibility / 1000;
-    currentWeather.dt = moment()
-      .utcOffset(currentWeather.timezone / 60)
-      .format("dddd, d MMM");
-    currentWeather.sys.sunrise = moment().format("HH:mm");
-    currentWeather.sys.sunset = moment().format("HH:mm");
+    currentWeather.dt = new Date(
+      (currentWeather.dt + currentWeather.timezone) * 1000
+    ).toLocaleDateString("en-GB", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+    });
+    currentWeather.sys.sunrise = new Date(
+      (currentWeather.sys.sunrise + currentWeather.timezone) * 1000
+    ).toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    currentWeather.sys.sunset = new Date(
+      (currentWeather.sys.sunset + currentWeather.timezone) * 1000
+    ).toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
     currentWeather.wind.speed = (currentWeather.wind.speed * 3.6).toFixed(1);
 
-    const forecast_result = await fetch(
+    const forecastResult = await fetch(
       `${process.env.API_URL}forecast?units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY}`
     );
-    const forecastWeather = await forecast_result.json();
+    const forecastWeather = await forecastResult.json();
 
     forecastWeather.list = forecastWeather.list.map(
       (item: {
@@ -39,9 +58,13 @@ export async function POST(req: Request) {
       }) => {
         return {
           ...item,
-          dt: moment((item.dt + forecastWeather.city.timezone) * 1000).format(
-            "HH:mm"
-          ),
+          dt: new Date(
+            (item.dt + forecastWeather.city.timezone) * 1000
+          ).toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }),
           weather: item.weather.map((weather) => ({
             ...weather,
             description: capFirstLetters(weather.description),
@@ -59,10 +82,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
-const capFirstLetters = (str: string) => {
-  return str
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};

@@ -1,15 +1,17 @@
-export const getLocation = (): Promise<{
-  lat: number;
-  lng: number;
+export const getLocation = async (): Promise<{
+  latitude: number;
+  longitude: number;
 }> => {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude: lat, longitude: lng } = position.coords;
-          const locationData = { lat, lng };
-          localStorage.setItem("horizoniq", JSON.stringify(locationData));
-          resolve(locationData);
+          const { latitude, longitude } = position.coords;
+          localStorage.setItem(
+            "horizoniq",
+            JSON.stringify({ latitude, longitude })
+          );
+          resolve({ latitude, longitude });
         },
         (err) => {
           reject(new Error(err.message));
