@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-[#5c9de6] text-[#EEE] antialiased text-balance ${font.className}`}
+        className={`bg-sky-600 text-sky-950 antialiased text-balance ${font.className}`}
       >
         <LocationProvider>{children}</LocationProvider>
       </body>

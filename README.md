@@ -16,14 +16,12 @@ A modern weather application built with Next.js that provides real-time weather 
 
 ## Technologies Used
 
-- Next.js 15.1.7
-- React 19.0.0
+- Next.js 15 with React 19
 - TypeScript
-- Tailwind CSS 4.0.8
+- Tailwind CSS
 - Leaflet & React Leaflet
-- Moment.js
 - Highcharts
-- React Loading Skeleton
+- React Skeleton Loading
 - OpenWeatherMap API
 
 ## Getting Started
@@ -31,7 +29,7 @@ A modern weather application built with Next.js that provides real-time weather 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/nextweather.git
+   git clone https://github.com/toxic-lmao/nextweather.git
    cd nextweather
    ```
 
@@ -39,25 +37,17 @@ A modern weather application built with Next.js that provides real-time weather 
 
    ```bash
    npm install
-   # or
-   yarn install
-   ```
-
-3. Set up environment variables:
-   Create a `.env.local` file in the root directory and add:
-   ```bash
-   OPENWEATHERMAP_API_KEY=your_api_key_here
    ```
 
 ## Environment Variables
 
 The following environment variables are required:
 
-| Variable         | Description                           |
-| ---------------- | ------------------------------------- |
-| `API_URL`        | OpenWeatherMap data API endpoint      |
-| `API_SEARCH_URL` | OpenWeatherMap geocoding API endpoint |
-| `API_KEY`        | Your OpenWeatherMap API key           |
+| Variable         | Description                                   |
+| ---------------- | --------------------------------------------- |
+| `API_URL`        | https://api.openweathermap.org/data/2.5/      |
+| `API_SEARCH_URL` | https://api.openweathermap.org/geo/1.0/direct |
+| `API_KEY`        | Your OpenWeatherMap API key                   |
 
 ## Usage
 
@@ -65,8 +55,6 @@ Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

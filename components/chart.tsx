@@ -18,7 +18,6 @@ export const Chart = ({
     fontSize: "0.875rem",
     lineHeight: "calc(1.25 / 0.875)",
     letterSpacing: "-0.025em",
-    color: "#000",
   };
 
   const chartOptions: Highcharts.Options = {
@@ -95,8 +94,8 @@ export const Chart = ({
     plotOptions: {
       area: {
         lineWidth: 1,
-        lineColor: "#5c9de6",
-        fillColor: "#5c9de6",
+        lineColor: "#0284c7",
+        fillColor: "#0284c7",
         marker: { enabled: false },
         dataLabels: { enabled: false },
         cursor: "pointer",
@@ -107,7 +106,7 @@ export const Chart = ({
         type: "area",
         name: "Chance of Rain",
         data: percentages,
-        color: "#5c9de6",
+        color: "#0284c7",
       },
     ],
   };

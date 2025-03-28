@@ -46,42 +46,42 @@ export const Search = () => {
       <SearchIcon
         size={24}
         onClick={() => setIsOpen(true)}
-        className="cursor-pointer hover:opacity-80 transition-all"
+        className="cursor-pointer hover:opacity-60 transition-all duration-300"
       />
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-20">
+        <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-50 flex items-start justify-center text-sky-950 pt-20">
           <div className="w-full max-w-xl mx-4 relative">
             <div className="relative">
               <input
-                className="w-full py-3 px-12 text-black rounded-2xl bg-[#e4f0fe] focus:outline-none"
+                className="w-full py-3 px-12 rounded-2xl bg-sky-100 focus:outline-none"
                 type="text"
                 placeholder="Search location..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 autoFocus
               />
-              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" />
               <button
                 onClick={() => {
                   setIsOpen(false);
                   setQuery("");
                   setSuggestions([]);
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                className="absolute right-4 top-1/2 -translate-y-1/2"
               >
                 <X size={20} className="cursor-pointer" />
               </button>
             </div>
 
             {suggestions.length > 0 && (
-              <ul className="mt-2 bg-[#e4f0fe] text-black rounded-2xl shadow-lg overflow-y-auto max-h-96">
+              <ul className="mt-2 bg-sky-700 text-sky-100 rounded-2xl shadow-xl overflow-y-auto max-h-96">
                 {suggestions.map((place, index) => (
                   <li
                     key={index}
-                    className="p-3 px-4 hover:bg-[#5c9de6] cursor-pointer"
+                    className="py-3.5 px-5 leading-tight hover:bg-sky-800 transition-colors duration-200 cursor-pointer"
                     onClick={() => {
-                      setQuery(`${place.name}, ${place.country}`);
+                      setQuery("");
                       setLocation([place.lat, place.lon]);
                       setIsOpen(false);
                     }}

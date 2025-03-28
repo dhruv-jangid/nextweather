@@ -19,13 +19,12 @@ export const Sidebar = ({
   }
 
   return (
-    <div className="col-span-3 flex flex-col gap-16 xl:gap-20 p-8 lg:p-12 w-full relative lg:overflow-hidden">
+    <div className="col-span-3 flex flex-col gap-16 xl:gap-20 p-8 lg:p-12 text-sky-100 w-full relative lg:overflow-hidden">
       <div className="flex flex-col gap-8 line">
         <div className="flex justify-between items-center">
           <Locate
             size={32}
-            className="p-1.5 bg-[#e4f0fe] rounded-2xl cursor-pointer"
-            color="#5c9de6"
+            className="p-1.5 bg-sky-100 stroke-sky-600 rounded-2xl cursor-pointer"
             onClick={async () => {
               const location = await getLocation();
               if (location) {
@@ -66,8 +65,8 @@ export const Sidebar = ({
         <Image
           src={Building}
           alt="Building"
-          fill={true}
-          priority={true}
+          fill
+          priority
           sizes="(max-width: 768px) 100vw)"
           className="xl:object-cover scale-x-[-1] lg:scale-x-[1]"
         />
