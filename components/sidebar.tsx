@@ -19,7 +19,7 @@ export const Sidebar = ({
   }
 
   return (
-    <div className="col-span-3 flex flex-col gap-16 xl:gap-20 p-8 lg:p-12 text-sky-100 w-full relative lg:overflow-hidden">
+    <div className="flex flex-col gap-16 xl:gap-20 p-8 lg:p-12 text-sky-100 w-full xl:fixed xl:left-0 xl:top-0 xl:h-dvh xl:max-w-96 overflow-hidden z-50">
       <div className="flex flex-col gap-8 line">
         <div className="flex justify-between items-center">
           <Locate
@@ -35,7 +35,7 @@ export const Sidebar = ({
           <Search />
         </div>
         <div className="flex flex-col gap-1.5 lg:gap-3">
-          <div className="flex justify-between items-center lg:flex-col lg:items-start lg:gap-1 xl:gap-0 xl:items-center xl:flex-row">
+          <div className="flex justify-between items-center">
             <h3 className="text-xl flex gap-1.5 items-center leading-tight">
               <Navigation size={16} />
               {current.name}
@@ -45,7 +45,7 @@ export const Sidebar = ({
               {current.sys.sunrise}
             </h4>
           </div>
-          <div className="flex justify-between items-center lg:flex-col lg:items-start lg:gap-1 xl:gap-0 xl:items-center xl:flex-row">
+          <div className="flex justify-between items-center">
             <h4 className="leading-tight">{current.dt}</h4>
             <h4 className="flex items-center gap-1.5">
               <Sunset size={16} />
@@ -54,21 +54,21 @@ export const Sidebar = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:items-center gap-4">
-        <h1 className="text-7xl lg:ml-6 -ml-1.5">{current.main.temp}°</h1>
+      <div className="flex flex-col xl:items-center gap-4">
+        <h1 className="text-7xl xl:ml-6 -ml-1.5">{current.main.temp}°</h1>
         <h1 className="text-xl flex items-center gap-2">
           {iconMap[current.weather[0].icon as WeatherIconCode]}
           {current.weather[0].main}
         </h1>
       </div>
-      <div className="absolute -bottom-28 -right-1 lg:-bottom-6 lg:-left-4 -z-10 h-full lg:h-1/2 xl:h-2/3 w-44 lg:w-full xl:w-xs">
+      <div className="absolute top-28 lg:top-24 -right-1 xl:top-auto xl:-bottom-7 xl:-left-4 -z-10 h-96 xl:h-2/3 w-46 lg:w-64 xl:w-xs lg:h-2/5">
         <Image
           src={Building}
           alt="Building"
           fill
           priority
           sizes="(max-width: 768px) 100vw)"
-          className="xl:object-cover scale-x-[-1] lg:scale-x-[1]"
+          className="xl:object-cover scale-x-[-1] xl:scale-x-[1]"
         />
       </div>
     </div>

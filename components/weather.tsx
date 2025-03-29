@@ -1,7 +1,9 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Chart } from "@/components/chart";
 import type { WeatherResponse } from "@/lib/useWeather";
+const Map = dynamic(() => import("@/components/map"), { ssr: false });
 import {
   Droplets,
   Eye,
@@ -13,7 +15,7 @@ import {
 
 export const Weather = ({ weatherData }: { weatherData: WeatherResponse }) => {
   return (
-    <div className="col-span-9 bg-sky-100 rounded-t-4xl lg:rounded-t-none lg:rounded-l-4xl p-8 lg:p-12 flex flex-col gap-8 h-full min-h-dvh">
+    <div className="bg-sky-100 rounded-t-4xl xl:rounded-t-none xl:rounded-l-4xl p-8 lg:p-12 flex flex-col gap-8 h-full xl:h-dvh overflow-y-scroll xl:ml-96 z-50 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:none]">
       <div className="hidden lg:block">
         <div className="text-lg font-medium">Welcome back, Guest!</div>
         <div>Checkout today&apos;s weather information</div>
@@ -191,6 +193,10 @@ export const Weather = ({ weatherData }: { weatherData: WeatherResponse }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col gap-6">
+        <div className="font-medium">Global Map</div>
+        <Map />
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-12">
+    <div className="relative flex flex-col xl:block">
       <Sidebar current={weatherData.currentWeather} />
       <Weather weatherData={weatherData} />
     </div>

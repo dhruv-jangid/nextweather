@@ -15,3 +15,20 @@ img {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+.leaflet-bar {
+  border: none !important;
+}
+
+.leaflet-control {
+  display: flex;
+  gap: 4;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  border-radius: 100% !important;
+  background-color: oklch(0.977 0.013 236.62) !important;
+  color: oklch(0.282 0.091 267.935) !important;
+  border: 1px solid oklch(0.39 0.09 240.876 / 30%) !important;
+}

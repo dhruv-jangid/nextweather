@@ -1,3 +1,5 @@
+"use client";
+
 import {
   MapContainer,
   TileLayer,
@@ -47,7 +49,7 @@ export default function Map() {
       <MapContainer
         center={location}
         zoom={14}
-        className="h-96 w-full rounded-xl md:h-[32rem]"
+        className="min-h-96 w-full rounded-4xl border border-sky-900/30 focus:outline-none"
         attributionControl={false}
         minZoom={3}
         maxZoom={18}
