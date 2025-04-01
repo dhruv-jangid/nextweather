@@ -45,7 +45,7 @@ export default function Map() {
   });
 
   return (
-    <div className="flex flex-col justify-between gap-4">
+    <div className="flex flex-col justify-between gap-4 z-0">
       <MapContainer
         center={location}
         zoom={14}

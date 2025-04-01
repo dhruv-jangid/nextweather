@@ -38,7 +38,7 @@ export const Sidebar = ({
           <div className="flex justify-between items-center">
             <h3 className="text-xl flex gap-1.5 items-center leading-tight">
               <Navigation size={16} />
-              {current.name}
+              {current.name || "Unknown"}
             </h3>
             <h4 className="flex items-center gap-1.5">
               <Sunrise size={16} />
