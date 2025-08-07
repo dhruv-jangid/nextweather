@@ -1,17 +1,21 @@
-import { capFirstLetters } from "@/utils/capFirstLetters";
+import "server-only";
+import { capFirstLetters } from "@/lib/utils";
 
-export async function POST(req: Request) {
-  const body = await req.json();
-  const { latitude, longitude } = body;
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const latitude = searchParams.get("lat");
+  const longitude = searchParams.get("lon");
+
   if (!latitude || !longitude) {
-    throw new Error("Latitude & Longitude are required!");
+    throw new Error("Latitude & Longitude are required");
   }
 
   try {
-    const currentResult = await fetch(
-      `${process.env.API_URL}weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY}`
-    );
-    const currentWeather = await currentResult.json();
+    const currentWeather = await (
+      await fetch(
+        `${process.env.API_URL}weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY}`
+      )
+    ).json();
 
     currentWeather.weather[0].description = capFirstLetters(
       currentWeather.weather[0].description
@@ -40,10 +44,11 @@ export async function POST(req: Request) {
     });
     currentWeather.wind.speed = (currentWeather.wind.speed * 3.6).toFixed(1);
 
-    const forecastResult = await fetch(
-      `${process.env.API_URL}forecast?units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY}`
-    );
-    const forecastWeather = await forecastResult.json();
+    const forecastWeather = await (
+      await fetch(
+        `${process.env.API_URL}forecast?units=metric&lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY}`
+      )
+    ).json();
 
     forecastWeather.list = forecastWeather.list.map(
       (item: {
@@ -55,30 +60,28 @@ export async function POST(req: Request) {
         pop: number;
         sys: object;
         dt_txt: string;
-      }) => {
-        return {
-          ...item,
-          dt: new Date(
-            (item.dt + forecastWeather.city.timezone) * 1000
-          ).toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-          }),
-          weather: item.weather.map((weather) => ({
-            ...weather,
-            description: capFirstLetters(weather.description),
-          })),
-        };
-      }
+      }) => ({
+        ...item,
+        dt: new Date(
+          (item.dt + forecastWeather.city.timezone) * 1000
+        ).toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+        weather: item.weather.map((w) => ({
+          ...w,
+          description: capFirstLetters(w.description),
+        })),
+      })
     );
 
     return Response.json({ currentWeather, forecastWeather });
   } catch (error) {
-    console.log(error);
-    return Response.json(
-      { error: "Failed to fetch weather data" },
-      { status: 500 }
-    );
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Something went wrong");
+    }
   }
 }

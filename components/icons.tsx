@@ -1,13 +1,13 @@
 import {
   Sun,
   Moon,
-  CloudSun,
-  CloudMoon,
   Cloud,
+  CloudSun,
+  CloudFog,
+  Snowflake,
+  CloudMoon,
   CloudRain,
   CloudLightning,
-  Snowflake,
-  CloudFog,
 } from "lucide-react";
 
 export type WeatherIconCode =

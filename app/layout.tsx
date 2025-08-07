@@ -1,9 +1,9 @@
-import { DM_Sans } from "next/font/google";
-import type { Metadata } from "next";
 import "@/app/globals.css";
-import { LocationProvider } from "@/lib/locationContext";
-
-const font = DM_Sans({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import { cn } from "@/lib/static/shadcnUtils";
+import { mainFont } from "@/lib/static/fonts";
+import { ThemeProvider } from "@/context/themeProvider";
+import { LocationProvider } from "@/context/locationProvider";
 
 export const metadata: Metadata = {
   title: "HorizonIQ",
@@ -16,11 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`bg-sky-600 text-sky-950 antialiased text-balance ${font.className}`}
-      >
-        <LocationProvider>{children}</LocationProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(mainFont.className, "antialiased")}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <LocationProvider>{children}</LocationProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

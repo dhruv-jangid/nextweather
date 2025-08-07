@@ -1,3 +1,16 @@
+export const getInitialLocation = (): [number, number] => {
+  if (typeof window === "undefined") {
+    return [51.505, -0.09];
+  }
+
+  const storedLocation = localStorage.getItem("horizoniq");
+  if (storedLocation) {
+    const { latitude, longitude } = JSON.parse(storedLocation);
+    return [latitude, longitude];
+  }
+  return [51.505, -0.09];
+};
+
 export const getLocation = async (): Promise<{
   latitude: number;
   longitude: number;
@@ -21,4 +34,11 @@ export const getLocation = async (): Promise<{
       reject(new Error("Geolocation is not supported by this browser."));
     }
   });
+};
+
+export const capFirstLetters = (str: string) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 };

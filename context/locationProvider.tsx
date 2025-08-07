@@ -1,7 +1,7 @@
 "use client";
 
+import { getInitialLocation } from "@/lib/utils";
 import { createContext, useContext, useState } from "react";
-import { getInitialLocation } from "@/utils/getInitialLocation";
 
 const LocationContext = createContext<
   | {

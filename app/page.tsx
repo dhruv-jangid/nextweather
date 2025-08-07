@@ -1,10 +1,10 @@
 "use client";
 
-import { useLocation } from "@/lib/locationContext";
-import { useWeather } from "@/lib/useWeather";
 import { Sidebar } from "@/components/sidebar";
 import { Weather } from "@/components/weather";
-import { SkeletonScreen } from "@/components/loading";
+import { useWeather } from "@/hook/useWeather";
+import { SkeletonScreen } from "@/components/skeleton";
+import { useLocation } from "@/context/locationProvider";
 
 export default function Home() {
   const { location } = useLocation();
@@ -15,11 +15,11 @@ export default function Home() {
   }
 
   if (error || !weatherData) {
-    return <div className="h-dvh text-lg">{error}</div>;
+    throw new Error(error);
   }
 
   return (
-    <div className="relative flex flex-col xl:block">
+    <div className="flex flex-col xl:flex-row max-h-dvh overflow-hidden">
       <Sidebar current={weatherData.currentWeather} />
       <Weather weatherData={weatherData} />
     </div>
