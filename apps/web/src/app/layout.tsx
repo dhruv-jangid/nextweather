@@ -1,9 +1,9 @@
-import "@/app/globals.css";
+import "server-only";
+import "@/globals.css";
 import type { Metadata } from "next";
 import { cn } from "@/lib/static/shadcnUtils";
 import { mainFont } from "@/lib/static/fonts";
-import { ThemeProvider } from "@/context/themeProvider";
-import { LocationProvider } from "@/context/locationProvider";
+import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "HorizonIQ",
@@ -18,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(mainFont.className, "antialiased")}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <LocationProvider>{children}</LocationProvider>
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Search as SearchIcon, X } from "lucide-react";
-import { useLocation } from "@/context/locationProvider";
+import { useLocation } from "@/components/providers/locationProvider";
 
 export const Search = () => {
   const [suggestions, setSuggestions] = useState<

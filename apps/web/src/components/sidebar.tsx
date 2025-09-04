@@ -1,9 +1,11 @@
+"use client";
+
 import { getLocation } from "@/lib/utils";
 import { Search } from "@/components/search";
-import { useLocation } from "@/context/locationProvider";
 import type { WeatherResponse } from "@/lib/static/types";
-import { iconMap, WeatherIconCode } from "@/components/icons";
+import { iconMap, type WeatherIconCode } from "@/components/icons";
 import { Sunrise, Navigation, Sunset, Locate } from "lucide-react";
+import { useLocation } from "@/components/providers/locationProvider";
 
 export const Sidebar = ({
   current,
@@ -20,8 +22,8 @@ export const Sidebar = ({
   };
 
   return (
-    <div className="flex dark:text-accent-foreground flex-col gap-16 xl:gap-20 p-8 lg:p-12 w-full xl:max-w-96 overflow-hidden">
-      <div className="flex flex-col gap-8 line">
+    <div className="flex dark:text-accent-foreground flex-col gap-12 xl:gap-20 p-8 lg:p-12 w-full xl:max-w-96 overflow-hidden">
+      <div className="flex flex-col gap-8">
         <div className="flex justify-between items-center">
           <Locate
             size={32}

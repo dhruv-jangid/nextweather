@@ -10,9 +10,8 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import { Icon, LatLngExpression } from "leaflet";
-import customMarker from "@/public/images/marker.png";
-import { useLocation } from "@/context/locationProvider";
+import { Icon, type LatLngExpression } from "leaflet";
+import { useLocation } from "@/components/providers/locationProvider";
 
 export default function Map() {
   const { location, setLocation } = useLocation();
@@ -39,7 +38,7 @@ export default function Map() {
   };
 
   const customIcon = new Icon({
-    iconUrl: customMarker.src,
+    iconUrl: "/images/marker.png",
     iconSize: [36, 36],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32],
@@ -50,7 +49,7 @@ export default function Map() {
       <MapContainer
         center={location}
         zoom={14}
-        className="min-h-96 w-full rounded-4xl border border-accent-foreground/30 focus:outline-none shadow-lg"
+        className="min-h-96 w-full rounded-4xl border border-accent-foreground/30 focus:outline-none shadow-sm"
         attributionControl={false}
         minZoom={3}
         maxZoom={18}

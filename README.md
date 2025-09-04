@@ -1,4 +1,4 @@
-# NextWeather
+# HorizonIQ
 
 A modern weather application built with Next.js that provides real-time weather information and forecasts.
 
@@ -30,13 +30,13 @@ A modern weather application built with Next.js that provides real-time weather 
 
    ```bash
    git clone https://github.com/toxic-lmao/nextweather.git
-   cd nextweather
+   cd nextweather/apps/web
    ```
 
-2. Install dependencies:
+2. Install dependencies (Bun):
 
    ```bash
-   npm install
+   bun install
    ```
 
 ## Environment Variables
@@ -54,7 +54,7 @@ The following environment variables are required:
 Run the development server:
 
 ```bash
-npm run dev
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
