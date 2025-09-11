@@ -21,9 +21,8 @@ import {
   WindArrowDown,
 } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useTheme } from "next-themes";
 import { Chart } from "@/components/chart";
-import type { WeatherResponse } from "@/lib/static/types";
-import { useTheme } from "@/components/providers/themeProvider";
 const Map = dynamic(() => import("@/components/map"), { ssr: false });
 
 export const Weather = ({ weatherData }: { weatherData: WeatherResponse }) => {

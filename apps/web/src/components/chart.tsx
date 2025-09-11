@@ -13,7 +13,6 @@ import {
   type ChartConfig,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import type { WeatherResponse } from "@/lib/static/types";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 const chartConfig = {

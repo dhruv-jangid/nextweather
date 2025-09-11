@@ -2,7 +2,6 @@
 
 import { getLocation } from "@/lib/utils";
 import { Search } from "@/components/search";
-import type { WeatherResponse } from "@/lib/static/types";
 import { iconMap, type WeatherIconCode } from "@/components/icons";
 import { Sunrise, Navigation, Sunset, Locate } from "lucide-react";
 import { useLocation } from "@/components/providers/locationProvider";

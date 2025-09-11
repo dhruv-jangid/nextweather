@@ -1,7 +1,7 @@
 import "server-only";
 import "@/globals.css";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { cn } from "@/lib/static/shadcnUtils";
 import { mainFont } from "@/lib/static/fonts";
 import { Providers } from "@/components/providers";
 

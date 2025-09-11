@@ -1,7 +1,7 @@
 {
   "name": "horizoniq",
   "description": "Know whats near, forecasts clear",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "workspaces": [
     "apps/*",

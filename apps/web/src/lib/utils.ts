@@ -1,3 +1,6 @@
+import { twMerge } from "tailwind-merge";
+import { clsx, type ClassValue } from "clsx";
+
 export const getInitialLocation = (): [number, number] => {
   if (typeof window === "undefined") {
     return [51.505, -0.09];
@@ -42,3 +45,7 @@ export const capFirstLetters = (str: string) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}

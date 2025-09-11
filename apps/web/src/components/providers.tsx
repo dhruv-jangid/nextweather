@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeProvider } from "./providers/themeProvider";
+import { ThemeProvider } from "next-themes";
 import { LocationProvider } from "./providers/locationProvider";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
