@@ -8,6 +8,9 @@ import { Providers } from "@/components/providers";
 export const metadata: Metadata = {
   title: "HorizonIQ",
   description: "Know whats near, forecasts clear",
+  applicationName: "HorizonIQ",
+  authors: { name: "Dhruv Jangid", url: "https://github.com/dhruv-jangid" },
+  creator: "Dhruv Jangid",
 };
 
 export default function RootLayout({
